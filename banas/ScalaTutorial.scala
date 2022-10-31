@@ -262,29 +262,59 @@ object ScalaTutorial {
     fenrir.speed = 120
     println(fenrir.move)
 
+    // ---------- TRAITS ----------
     delimit()
-  
-// ---------- TRAITS ----------
-    // Like interfaces
+    val superman = new SuperHero("Superman")
+    println(superman.fly)
+    println(superman.hitByBullet)
+    println(superman.ricochet(3419))
 
-// ---------- HIGHER ORDER FUNCTIONS ----------
+    // ---------- HIGHER ORDER FUNCTIONS ----------
+    delimit()
+    val log10Func = log10 _
+    println(log10Func(10000))
+    List(10.0, 100.0, 1000.0, 10000.0).map(log10Func).foreach(println)
+    List(1, 2, 3, 4, 5).map((x: Int) => x * 50).foreach(println)
+    List(1, 2, 3, 4, 5).filter(_ % 2 == 0).foreach(println)
 
-// ---------- FILE I/O ----------
+    delimit()
+    def times3(num: Int) = num * 3
+    def times4(num: Int) = num * 4
+    // Receives a function as an argument
+    def multInt(func: (Int) => Double, num: Int) = func(num)
+    printf("3 * 100 = %.1f\n", multInt(times3, 100))
+    printf("4 * 100 = %.1f\n", multInt(times4, 100))
 
-// ---------- EXCEPTION HANDLING ----------
+    delimit()
+    val divisorVal = 5
+    val divFive = (num: Double) => num / divisorVal
+    printf("5 / 5 = %.1f\n", divFive(5))
 
-// ---------- END OF MAIN ----------
+    // ---------- FILE I/O ----------
+    delimit()
+    val writer = PrintWriter("test.txt")
+    writer.write("Just do it\nYesterday you said tomorrow")
+    writer.close()
 
-// ---------- CLASSES ----------
+    delimit()
+    val textFromFile = Source.fromFile("test.txt", "UTF-8")
+    val lineIterator = textFromFile.getLines()
+    for (line <- lineIterator)
+      println(line)
+    textFromFile.close()
 
-// ---------- INHERITANCE ----------
+    // ---------- EXCEPTION HANDLING ----------
+    delimit()
+    def divideNums(num1: Int, num2: Int) = try {
+      num1 / num2
+    } catch {
+      case ex: java.lang.ArithmeticException => "Can't divide by zero."
+    } finally {
+      // Cleanup
+    }
+    println("3 / 0 = " + divideNums(3, 0))
 
-// ---------- ABSTRACT CLASS ----------
-
-// ---------- TRAITS ----------
-
-// ---------- End of object ScalaTut ----------
-
+    delimit()
   }
 
   def delimit(): Unit = {
@@ -293,9 +323,9 @@ object ScalaTutorial {
 
   // ---------- CLASSES ----------
 
-  // No static variables/methods
-  // Default constructor in declaration
   class Animal(var name: String, var sound: String) {
+    // No static variables/methods
+    // Default constructor in declaration
     this.setName(name)
     val id = Animal.newId
 
@@ -386,6 +416,27 @@ object ScalaTutorial {
       this.name,
       this.speed
     )
+  }
+
+// ---------- TRAITS ----------
+  // Like Java/TypeScript interfaces
+  trait Fyable {
+    def fly: String
+  }
+
+  trait BulletProof {
+    def hitByBullet: String
+
+    def ricochet(initialSpeed: Double): String = {
+      "The bullet ricochets at a speed of %.1f ft/sec".format(
+        initialSpeed * 0.75
+      )
+    }
+  }
+
+  class SuperHero(name: String) extends Fyable with BulletProof {
+    def fly = "%s flies around the city".format(this.name)
+    def hitByBullet = "The bullet bounces off of %s".format(this.name)
   }
 
 }
