@@ -207,13 +207,65 @@ object ScalaTutorial {
 
     // ---------- MAPS ----------
     delimit()
+    // Immutable
+    val employees = Map("Manager" -> "Bob Smith", "Secretary" -> "Sue Garfield")
+    if (employees.contains("Manager"))
+      printf("Manager: %s\n", employees("Manager"))
+    printf("Secretary: %s\n", employees.get("Secretary"))
+    printf("BAD: %s\n", employees.get("BAD BAD"))
 
     delimit()
-// ---------- TUPLES ----------
+    // Mutable
+    val customers =
+      collection.mutable.Map(100 -> "Paul Smith", 101 -> "Sally Jones")
+    printf("Customer 1: %s\n", customers(100))
+    customers(100) = "James Jonah"
+    printf("Customer 1: %s\n", customers(100))
+    customers(102) = "Rhadamant Belovsky"
+    for ((key, value) <- customers)
+      printf("Customer %d: %s\n", key, value)
 
-// ---------- CLASSES ----------
+    // ---------- TUPLES ----------
+    delimit()
+    // Immutable
+    var tupleMarge = (103, "Marge Simpson", 10.25)
+    printf("%s owes us %.2f\n", tupleMarge._2, tupleMarge._3)
+    tupleMarge.productIterator.foreach(i => println(i))
+    println(tupleMarge.toString())
 
+    // ---------- CLASSES ----------
+    delimit()
+    val beygle = new Animal
+    beygle.setName("Beygle")
+    beygle.setSound("Woof")
+    println(
+      "Hello, my name is " + beygle.getName() + ", I'm a cute little pug."
+    )
+    println(beygle.toString())
+
+    delimit()
+    val whiskies = new Animal("Whiskies", "Meow")
+    println(
+      s"Hello, my name is ${whiskies.getName()}, I'm a cute little cat."
+    )
+    println(whiskies.toString())
+
+    delimit()
+    val bacon = new Dog("Bacon", "Woof", "Grrr")
+    println(
+      "Hello, my name is " + bacon.getName() + ", I'm a cute little pug."
+    )
+    println(bacon.toString())
+
+    delimit()
+    val fenrir = new Wolf("Fenrir")
+    fenrir.speed = 120
+    println(fenrir.move)
+
+    delimit()
+  
 // ---------- TRAITS ----------
+    // Like interfaces
 
 // ---------- HIGHER ORDER FUNCTIONS ----------
 
@@ -238,4 +290,102 @@ object ScalaTutorial {
   def delimit(): Unit = {
     println("========================================")
   }
+
+  // ---------- CLASSES ----------
+
+  // No static variables/methods
+  // Default constructor in declaration
+  class Animal(var name: String, var sound: String) {
+    this.setName(name)
+    val id = Animal.newId
+
+    // You can restric access as you would in Java/JS/Whatever
+    // Can only be accessed by class its own class methods
+    // private var name = "No Name"
+    // Can be accessed by class and sub-class methods
+    // protected var name = "No Name"
+    // Can be accessed by anything
+    // public var name = "No Name"
+
+    def getName(): String = name
+    def getSound(): String = sound
+
+    def setName(name: String): Unit = {
+      val hasDigits = name.matches(".*\\d+.*")
+      if (hasDigits) {
+        println("Bad animal name!")
+        return
+      }
+
+      this.name = name
+    }
+    def setSound(sound: String): Unit = {
+      this.sound = sound
+    }
+
+    // Another constructor
+    def this(name: String) = {
+      this("No Name", "No Sound")
+      this.setName(name)
+    }
+    // Method overloading
+    def this() = {
+      this("No Name", "No Sound")
+    }
+
+    override def toString(): String = {
+      return "%s with id %d says '%s'".format(this.name, this.id, this.sound)
+    }
+
+  }
+
+  // Companion object for static class variables and functions
+  object Animal {
+    private var idNumber = 0
+    private def newId = { idNumber += 1; idNumber }
+  }
+
+  // 'final' Makes class uninheritable
+  // 'extends' Inherits from another class
+  final class Dog(name: String, sound: String, growl: String)
+      extends Animal(name, sound) {
+    def this(name: String, sound: String) = {
+      this("No Name", sound, "No Growl")
+      this.setName(name)
+    }
+    def this(name: String) = {
+      this("No Name", "No Sound", "No Growl")
+      this.setName(name)
+    }
+    def this() = {
+      this("No Name", "No Sound", "No Growl")
+    }
+
+    override def toString(): String = {
+      return "%s with id %d says '%s' and growls '%s'".format(
+        this.name,
+        this.id,
+        this.sound,
+        this.growl
+      )
+
+    }
+  }
+
+  // Can't be instantiated
+  abstract class Mammal(name: String) {
+    var speed: Double
+
+    def move: String
+  }
+
+  class Wolf(name: String) extends Mammal(name) {
+    var speed = 35.0
+
+    def move = "The Wolf %s moves at %f mph".format(
+      this.name,
+      this.speed
+    )
+  }
+
 }
