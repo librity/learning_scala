@@ -1,3 +1,5 @@
+// SOURCE: https://www.newthinktank.com/2015/08/learn-scala-one-video/
+
 // Install Scala on Mac : Install Java VM, Install Homebrew,
 // In terminal type: brew install scala
 

@@ -119,14 +119,6 @@ true && false
 false && true
 false && false
 
-// ---------- LOOPING ----------
-
-// ---------- INPUT / OUTPUT ----------
-
-// ---------- STRINGS ----------
-
-// ---------- FUNCTIONS ----------
-
 // ---------- ARRAYS ----------
 
 // ---------- MAPS ----------
