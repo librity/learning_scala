@@ -118,31 +118,3 @@ true && true
 true && false
 false && true
 false && false
-
-// ---------- ARRAYS ----------
-
-// ---------- MAPS ----------
-
-// ---------- TUPLES ----------
-
-// ---------- CLASSES ----------
-
-// ---------- TRAITS ----------
-
-// ---------- HIGHER ORDER FUNCTIONS ----------
-
-// ---------- FILE I/O ----------
-
-// ---------- EXCEPTION HANDLING ----------
-
-// ---------- END OF MAIN ----------
-
-// ---------- CLASSES ----------
-
-// ---------- INHERITANCE ----------
-
-// ---------- ABSTRACT CLASS ----------
-
-// ---------- TRAITS ----------
-
-// ---------- End of object ScalaTut ----------

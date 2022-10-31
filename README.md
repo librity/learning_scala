@@ -41,7 +41,7 @@ sbt new scala/scala3.g8
 sbt new scala/hello-world.g8
 ```
 
-Then type project name. You can then compile, run or test it:
+Then type project name. You can compile, run or test it with:
 
 ```bash
 $ cd hello_world
@@ -50,3 +50,16 @@ $ sbt run
 $ sbt console
 $ sbt test
 ```
+
+## IDE
+
+VSCode:
+
+- https://marketplace.visualstudio.com/items?itemName=scalameta.metals
+- https://marketplace.visualstudio.com/items?itemName=scala-lang.scala
+
+IntelliJ IDEA
+
+- https://www.jetbrains.com/idea/download/#section=linux
+- https://stackoverflow.com/questions/47748433/are-vs-code-keybindings-available-for-intellij-idea
+- https://www.jetbrains.com/help/idea/mastering-keyboard-shortcuts.html#learn-shortcuts
