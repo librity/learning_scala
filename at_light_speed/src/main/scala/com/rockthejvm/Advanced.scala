@@ -66,7 +66,7 @@ object Advanced extends App {
   //  Implicit Arguments
   def implicitFunction(implicit arg: Int) = arg + 1
 
-  implicit val implicitVal = 46
+  implicit val implicitVal: Int = 46
   println(implicitFunction)
 
 
