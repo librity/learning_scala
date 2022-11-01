@@ -1,5 +1,7 @@
 package com.rockthejvm
 
+// extends App: Lets us to run this with `sbt run`
+// Inherits: public static void main(String[] args)
 object Basics extends App {
 
   val meaningOfLife: Int = 42
