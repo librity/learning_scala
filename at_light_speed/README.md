@@ -10,6 +10,7 @@
 - https://www.jetbrains.com/idea/download/#section=linux
 - https://stackoverflow.com/questions/47748433/are-vs-code-keybindings-available-for-intellij-idea
 - https://www.jetbrains.com/help/idea/mastering-keyboard-shortcuts.html#learn-shortcuts
+- https://www.jetbrains.com/help/idea/multicursor.html
 
 Install Java 8 JDK:
 
@@ -19,3 +20,5 @@ $ sudo apt install openjdk-8-jdk-headless
 
 Then add it to the project's settings: `/usr/lib/jvm/java-8-openjdk-amd64`
 Ctrl+F5 to compile and run (`sbt`).
+
+
