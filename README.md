@@ -60,6 +60,7 @@ VSCode:
 
 IntelliJ IDEA
 
+- https://docs.scala-lang.org/getting-started/intellij-track/getting-started-with-scala-in-intellij.html
 - https://www.jetbrains.com/idea/download/#section=linux
 - https://stackoverflow.com/questions/47748433/are-vs-code-keybindings-available-for-intellij-idea
 - https://www.jetbrains.com/help/idea/mastering-keyboard-shortcuts.html#learn-shortcuts
