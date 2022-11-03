@@ -49,6 +49,7 @@ $ sbt compile
 $ sbt run
 $ sbt console
 $ sbt test
+$ sbt clean
 ```
 
 ## IDE
